@@ -499,7 +499,7 @@ pub fn captureStackTrace(first_address: ?usize, stack_trace: *std.builtin.StackT
         // TODO: This should use the DWARF unwinder if .eh_frame_hdr is available (so that full debug info parsing isn't required).
         //       A new path for loading SelfInfo needs to be created which will only attempt to parse in-memory sections, because
         //       stopping to load other debug info (ie. source line info) from disk here is not required for unwinding.
-        if (builtin.cpu.arch == .powerpc64) {
+        if (builtin.cpu.arch.isPowerPC64()) {
             // https://github.com/ziglang/zig/issues/24970
             stack_trace.index = 0;
             return;
